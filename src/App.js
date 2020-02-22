@@ -1,11 +1,45 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import './App.css';
+import { Header, Title } from './components/StyledComponents';
+import ArticleContainer from './container/ArticleContainer';
+import SavedArticleContainer from './container/SavedArticleContainer';
+import Nav from './components/UI/Nav';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import { AppContext } from "./Store/Store";
+import { appReducer, initialState } from "./Reducer/Reducer";
+
 
 function App() {
+
+  const [state, dispatch] = useReducer(appReducer, initialState);
+
   return (
-    <div className="App">
-      hi
-    </div>
+    <AppContext.Provider value={{ state, dispatch }}>
+      <Router>
+
+        <Header>
+          <Link to="/">
+            <Title>Article App</Title>
+          </Link>
+          <Nav />
+        </Header>
+
+        <Switch>
+          <Route path="/saved-Articles">
+            <SavedArticleContainer />
+          </Route>
+          <Route path="/">
+            <ArticleContainer />
+          </Route>
+        </Switch>
+
+      </Router>
+    </AppContext.Provider>
   );
 }
 
