@@ -4,7 +4,7 @@ import { Dimmer, Loader, Pagination } from 'semantic-ui-react'
 import { AppContext } from "../Store/Store";
 import { getData } from '../utils/getData';
 import ArticleList from '../components/ArticleList/ArticleList';
-import { ArticleContainerWrapper, HorizontalFlex } from '../components/StyledComponents';
+import { ContainerWrapper, HorizontalFlex } from '../components/StyledComponents';
 import SearchInput from '../components/SearchInput/SearchInput';
 import SortDate from '../components/SortDate/SortDate';
 import ErrorMessage from '../components/UI/ErrorMessage';
@@ -31,11 +31,11 @@ const ArticleContainer = () => {
     const fetchData = async (queryObj = {}) => {
         setIsLoading(true);
         try {
-            const data = await getData(getArticleApi, { begin_date: 20200221, ...queryObj });
+            const data = await getData(getArticleApi, { begin_date: 20200223, ...queryObj });
             console.log('data.response.docs :: ', data)
             connectStore.dispatch({
-                type: 'FETCH_ArticleS',
-                payload: { Articles: data.docs }
+                type: 'FETCH_ARTICLES',
+                payload: { articles: data.docs }
             });
             setTotal(data.meta.hits);
             setIsLoading(false);
@@ -95,7 +95,7 @@ const ArticleContainer = () => {
                         <Dimmer active={isLoading} inverted>
                             <Loader inverted size='large'>Getting Articles</Loader>
                         </Dimmer>
-                        <ArticleContainerWrapper>
+                        <ContainerWrapper>
                             <HorizontalFlex style={{minWidth: '40%'}}>
                                 <SearchInput onSearch={onSearch} />
                                 <SortDate onSort={onSort} />
@@ -119,7 +119,7 @@ const ArticleContainer = () => {
                             }
 
 
-                        </ArticleContainerWrapper>
+                        </ContainerWrapper>
                     </>
             }
         </>

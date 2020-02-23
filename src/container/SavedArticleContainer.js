@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { AppContext } from "../Store/Store";
 import ArticleList from '../components/ArticleList/ArticleList';
-import { ArticleContainerWrapper } from '../components/StyledComponents';
+import { ContainerWrapper } from '../components/StyledComponents';
 import EmptyList from '../components/UI/EmptyList';
 import { Icon } from 'semantic-ui-react'
 
@@ -18,9 +18,9 @@ const SavedArticleContainer = () => {
             {
                 connectStore.state.likedArticles && connectStore.state.likedArticles.length
                 ?
-                <ArticleContainerWrapper>
+                <ContainerWrapper>
                     <ArticleList Articles={connectStore.state.likedArticles} />
-                </ArticleContainerWrapper>
+                </ContainerWrapper>
                 :
                 <EmptyList title='Empty list' message={<><Icon name='heart' size='small' color='red'/>Articles and come back here ;)</>}/>
             }

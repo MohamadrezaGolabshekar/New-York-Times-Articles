@@ -38,7 +38,13 @@ export const Title = styled.h1`
     }
 `;
 
-export const ArticleContainerWrapper = styled.div`
+export const ArticleItemImg = styled.img`
+    width: ${({ width }) => width || '300px'};
+    height: ${({ height }) => height || 'auto'};
+    border-radius: 3px;
+`;
+
+export const ContainerWrapper = styled.div`
     padding: 60px 0;
     display: flex;
     flex-direction: column;
@@ -68,6 +74,13 @@ export const ArticleTitle = styled.h2`
 export const H4 = styled.h4`
     margin: 0;
     text-align: center;
+    font-weight: 700;
+    color: black;
+`;
+
+export const P = styled.p`
+    text-align: center;
+    padding: 15px;
     font-weight: 700;
     color: black;
 `;

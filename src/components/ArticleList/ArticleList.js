@@ -8,17 +8,12 @@ import ArticleItem from '../ArticleItem/ArticleItem';
  */
 const ArticleList = ({ Articles }) => {
 
-    const goToDetail = article => {
-        console.log('to detail ', article);
-    }
-
-
     return (
         <>
 
             <ArticleListWrapper>
                 {
-                    Articles.map(article => <ArticleItem key={article._id} article={article} goToDetail={goToDetail} />)
+                    Articles.map(article => <ArticleItem key={article._id} article={article} />)
                 }
             </ArticleListWrapper>
         </>

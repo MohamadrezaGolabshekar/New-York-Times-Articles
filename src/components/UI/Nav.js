@@ -14,7 +14,8 @@ const Nav = () => {
     
 
     useEffect(() => {
-        setActiveItem(window.location.pathname === '/' ? 'home' : 'saved-Articles');
+        console.log('window.location.pathname :: ', window.location.pathname)
+        setActiveItem(window.location.pathname === '/' ? 'home' : window.location.pathname === '/saved-Articles' ? 'saved-Articles' : '');
     }, [window.location.pathname])
 
     return (

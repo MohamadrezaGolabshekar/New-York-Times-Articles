@@ -2,13 +2,16 @@ import {likeAndDislike, checkLiked} from '../utils/reducerUtils';
 
 const initialState = {
     originalArticles: null,
-    likedArticles: []
+    likedArticles: [],
+    selectedArticle: {}
 };
 
 const appReducer = (state = initialState, action = {}) => {
     switch (action.type) {
-        case "FETCH_ArticleS":
-            return { ...state, originalArticles: checkLiked(action.payload.Articles, state.likedArticles) };
+        case "FETCH_ARTICLES":
+            return { ...state, originalArticles: checkLiked(action.payload.articles, state.likedArticles) };
+        case "SELECT_ARTICLE":
+            return { ...state, selectedArticle: action.payload.article };
         case "LIKE":
             const { cloneOriginalArticles: cloneOrg, cloneLikedArticles: cloneLiked } = likeAndDislike(true, action.payload._id, state.originalArticles, state.likedArticles);
             return { ...state, likedArticles: cloneLiked, originalArticles: cloneOrg };

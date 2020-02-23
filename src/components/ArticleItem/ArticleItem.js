@@ -1,14 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Card } from 'semantic-ui-react'
 import { ArticleTitle, H4, ArticlePubTime } from '../StyledComponents';
 import Like from '../Like/Like';
 import { createShortText } from '../../utils/createShortText';
+import { AppContext } from "../../Store/Store";
+import { withRouter } from 'react-router-dom'
 
 /**
  * it is just a placeholder for a Article item data and for it I used 
  * Card component from semantic-ui-react and some other custom component
  */
-const ArticleItem = ({ article, goToDetail }) => {
+const ArticleItem = ({ article, history }) => {
+
+    const connectStore = useContext(AppContext);
+
+    const goToDetail = article => {
+        connectStore.dispatch({
+            type: 'SELECT_ARTICLE',
+            payload: { article }
+        });
+
+        history.push('/article-detail')
+    }
 
     return (
         <Card onClick={() => null}>
@@ -22,4 +35,4 @@ const ArticleItem = ({ article, goToDetail }) => {
     )
 }
 
-export default ArticleItem;
+export default withRouter(ArticleItem);

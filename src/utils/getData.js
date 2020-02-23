@@ -5,9 +5,7 @@ import axios from 'axios';
  * and I wanted to use .env and add it to gitIgnore and send it to you separately 
  * but just to make it easy for you I prefer to add it here
  */
-const ts = '1565922410';
 const apikey = 'qyyoGIktN5iIMvApp2Tr6tkuVuoE1Npg';
-const hash = '1492df65a88ef98a1a279719fe509f72';
 
 /**
  * I use this fetch function in main page and to get resumes like comics and series ,...
@@ -32,7 +30,6 @@ export const getData = (api, queryObj = { page: 0 }, cancelToken) => {
             })
             .catch(error => {
                 if (axios.isCancel(error)) {
-                    console.log('Request canceled', error.message);
                   } else {
                     reject(error);
                   }

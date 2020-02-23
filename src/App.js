@@ -3,6 +3,7 @@ import './App.css';
 import { Header, Title } from './components/StyledComponents';
 import ArticleContainer from './container/ArticleContainer';
 import SavedArticleContainer from './container/SavedArticleContainer';
+import DetailArticleContainer from './container/DetailArticleContainer';
 import Nav from './components/UI/Nav';
 import {
   BrowserRouter as Router,
@@ -32,6 +33,9 @@ function App() {
         <Switch>
           <Route path="/saved-Articles">
             <SavedArticleContainer />
+          </Route>
+          <Route path="/article-detail">
+            <DetailArticleContainer />
           </Route>
           <Route path="/">
             <ArticleContainer />
