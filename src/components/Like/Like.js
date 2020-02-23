@@ -7,7 +7,7 @@ import { AppContext } from "../../Store/Store";
  * it handle a click function to dispatch an action to our reducer and handle 
  * like and dislike Article
  */
-const Like = ({ isLike = false, article }) => {
+const Like = ({ article }) => {
 
     const connectStore = useContext(AppContext);
 

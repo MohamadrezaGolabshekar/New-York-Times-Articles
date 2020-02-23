@@ -32,7 +32,6 @@ const ArticleContainer = () => {
         setIsLoading(true);
         try {
             const data = await getData(getArticleApi, { begin_date: 20200223, ...queryObj });
-            console.log('data.response.docs :: ', data)
             connectStore.dispatch({
                 type: 'FETCH_ARTICLES',
                 payload: { articles: data.docs }
@@ -40,7 +39,6 @@ const ArticleContainer = () => {
             setTotal(data.meta.hits);
             setIsLoading(false);
         } catch (err) {
-            console.log('err :: ', err)
             setIsLoading(false);
             setError({ message: err.message, code: err.code });
         }
@@ -58,7 +56,6 @@ const ArticleContainer = () => {
      * @param {*} data 
      */
     const onPageChange = (e, data) => {
-        console.log('data.activePage : :', data.activePage)
         setActivePage(data.activePage);
         const queryObj = { ...query, page: data.activePage - 1 };
         fetchData(queryObj);

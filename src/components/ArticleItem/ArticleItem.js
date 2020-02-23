@@ -14,10 +14,10 @@ const ArticleItem = ({ article, history }) => {
 
     const connectStore = useContext(AppContext);
 
-    const goToDetail = article => {
+    const goToDetail = _id => {
         connectStore.dispatch({
             type: 'SELECT_ARTICLE',
-            payload: { article }
+            payload: { _id }
         });
 
         history.push('/article-detail')
@@ -26,10 +26,10 @@ const ArticleItem = ({ article, history }) => {
     return (
         <Card onClick={() => null}>
             <Card.Content style={{ textAlign: 'center' }}>
-                <ArticleTitle onClick={() => goToDetail(article)}>{createShortText(article.section_name || '-', 15)}</ArticleTitle>
-                <H4 onClick={() => goToDetail(article)}>{createShortText(article.headline.name || article.headline.main, 30)}</H4>
+                <ArticleTitle onClick={() => goToDetail(article._id)}>{createShortText(article.section_name || '-', 15)}</ArticleTitle>
+                <H4 onClick={() => goToDetail(article._id)}>{createShortText(article.headline.name || article.headline.main, 30)}</H4>
                 <ArticlePubTime>{new Date(article.pub_date).toDateString()}</ArticlePubTime>
-                <Like article={article} isLike={article.isLiked} />
+                <Like article={article} />
             </Card.Content>
         </Card>
     )

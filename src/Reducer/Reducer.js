@@ -3,7 +3,7 @@ import {likeAndDislike, checkLiked} from '../utils/reducerUtils';
 const initialState = {
     originalArticles: null,
     likedArticles: [],
-    selectedArticle: {}
+    selectedArticleId: ''
 };
 
 const appReducer = (state = initialState, action = {}) => {
@@ -11,7 +11,7 @@ const appReducer = (state = initialState, action = {}) => {
         case "FETCH_ARTICLES":
             return { ...state, originalArticles: checkLiked(action.payload.articles, state.likedArticles) };
         case "SELECT_ARTICLE":
-            return { ...state, selectedArticle: action.payload.article };
+            return { ...state, selectedArticleId: action.payload._id };
         case "LIKE":
             const { cloneOriginalArticles: cloneOrg, cloneLikedArticles: cloneLiked } = likeAndDislike(true, action.payload._id, state.originalArticles, state.likedArticles);
             return { ...state, likedArticles: cloneLiked, originalArticles: cloneOrg };

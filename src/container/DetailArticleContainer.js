@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { AppContext } from "../Store/Store";
-import ArticleList from '../components/ArticleList/ArticleList';
-import EmptyList from '../components/UI/EmptyList';
-import { Icon, Label } from 'semantic-ui-react';
+import Like from '../components/Like/Like';
+import { Label } from 'semantic-ui-react';
 import { ContainerWrapper, HorizontalFlex, ArticleTitle, H4, P, ArticlePubTime, ArticleItemImg } from '../components/StyledComponents';
 /**
  * a container for detail article
@@ -15,13 +14,12 @@ const DetailArticleContainer = ({ history }) => {
     const imagePath = 'https://static01.nyt.com/';
 
     useEffect(() => {
-        console.log('connectStore :: ', connectStore.state.selectedArticle)
-        if (!connectStore.state.selectedArticle._id) {
+        if (!connectStore.state.selectedArticleId) {
             history.goBack()
         } else {
-            setArticle(connectStore.state.selectedArticle)
+            setArticle(connectStore.state.originalArticles.find(i => i._id === connectStore.state.selectedArticleId))
         }
-    }, [connectStore.state.selectedArticle._id])
+    })
 
 
     return (
@@ -45,6 +43,8 @@ const DetailArticleContainer = ({ history }) => {
                     </P>
 
                     <P>This article is created {article.byline.organization && 'by'}: {article.byline.organization || article.byline.original}</P>
+
+                    <Like article={article} />
 
                     <ArticlePubTime>{new Date(article.pub_date).toDateString()}</ArticlePubTime>
                     {
