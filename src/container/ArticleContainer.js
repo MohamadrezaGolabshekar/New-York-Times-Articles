@@ -73,7 +73,7 @@ const ArticleContainer = () => {
     }
 
     /**
-     * @desc handle input search change for onChange searching
+     * @desc handle sort for newest or oldest article
      * @param string val 
      */
     const onSort = val => {
